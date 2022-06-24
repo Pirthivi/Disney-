@@ -108,7 +108,7 @@ const Header = (props) => {
 };
 
 const Nav = styled.nav`
-  /* position: fixed; */
+  position: fixed;
   background-color: #090b13;
   height: 80px;
   display: flex;

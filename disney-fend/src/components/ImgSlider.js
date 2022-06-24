@@ -40,14 +40,8 @@ const ImgSlider = (props) => {
   );
 };
 
-const Container = styled.div`
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-`;
+const Container = styled.div``;
 const Carousel = styled(Slider)`
-  /* display: flex; */
-  /* align-items: center; */
   margin-top: 20px;
   width: 100%;
 
@@ -87,7 +81,6 @@ const Wrap = styled.div`
   border-radius: 4px;
   cursor: pointer;
   position: relative;
-  /* display: block; */
 
   a {
     border-radius: 4px;
