@@ -6,7 +6,7 @@ import NewDisney from "./NewDisney";
 import Originals from "./Originals";
 import Trending from "./Trending";
 import { useEffect } from "react";
-import db from "../firebase";
+// import db from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { setMovies } from "../app/features/Movies/movieSlice";
 import { selectUserName } from "../app/features/users/userSlice";
@@ -19,27 +19,12 @@ const Home = (props) => {
   let newDisney = [];
   let originals = [];
   let trendings = [];
-  // useEffect(()=>{
-  // async     function fetchData(){
-  //         const req = await axios.get("/movie_data");
-  //         console.log(req.data);
-  //     }
-  //     fetchData();
-
-  // },[])
 
   useEffect(() => {
-    // data from firebase database
-    // const dbf=[]
-    // db.collection('Movies').onSnapshot((snapshot)=>{
-    //      dbf.push(snapshot.docs.map(doc=>doc.data()))
-    //      console.log(dbf)
-
-    //     })
-
     async function fetchData() {
       const req = await axios.get("/movie_data");
       req.data.map((data) => {
+        // console.log(data);
         switch (data.type) {
           case "recommend":
             // console.log(recommends)
@@ -54,7 +39,10 @@ const Home = (props) => {
           case "trending":
             trendings = [...trendings, { id: data._id, ...data }];
             break;
+          default:
+            return "nothing";
         }
+        // return data;
       });
 
       dispatch(
@@ -68,8 +56,8 @@ const Home = (props) => {
       // console.log("hi")
       recommends = [];
       newDisney = [];
-      originals = [];
       trendings = [];
+      originals = [];
     }
 
     fetchData();
@@ -92,10 +80,10 @@ const Container = styled.div`
   min-height: calc(100vh - 250px);
   overflow: hidden;
   display: block;
-  top: 70px;
+  top: 20px;
   padding: 0 calc(3.5vw + 5px);
 
-  &:after {
+  &::before {
     background-image: url("/images/home-background.png");
     background-position: center;
     background-repeat: no-repeat;

@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { auth, provider } from "../firebase";
+import { auth, provider } from "../firebase.js";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import {
   selectUserName,
   selectUserPhoto,
@@ -12,7 +13,7 @@ import { useEffect } from "react";
 
 const Header = (props) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
 
@@ -20,10 +21,10 @@ const Header = (props) => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
-
-        history.push("/home");
+        // history.push("/home");
       }
     });
+    // eslint-disable-next-line
   }, [userName]);
 
   const handleAuth = () => {
@@ -41,7 +42,7 @@ const Header = (props) => {
         .signOut()
         .then(() => {
           dispatch(setSignOutState());
-          history.push("/", { fromDasdboard: true });
+          history.push("/", { fromDasdboard: false });
         })
         .catch((err) => {
           alert(err.message);
@@ -97,8 +98,7 @@ const Header = (props) => {
           <SignOut>
             <UserImg src={userPhoto} alt={userName} />
             <DropDown>
-              {" "}
-              <span onClick={handleAuth}>Sign Out</span>{" "}
+              <span onClick={handleAuth}>Sign Out</span>
             </DropDown>
           </SignOut>
         </>
@@ -108,40 +108,35 @@ const Header = (props) => {
 };
 
 const Nav = styled.nav`
-  position: fixed;
+  /* position: fixed; */
   background-color: #090b13;
-  height: 70px;
+  height: 80px;
   display: flex;
-  top: 0;
+  top: 0px;
+
   flex-direction: row;
   width: 100%;
+  margin: 0px auto;
   justify-content: space-between;
   align-items: center;
   /* justify-content: center; */
   align-items: center;
   padding: 0 20px;
 
-  z-index: 1;
+  z-index: 5;
 `;
 const Logo = styled.a`
-  width: 80px;
-  padding: 4px;
-  margin-bottom: 7px;
-
-  /* display:inline-block; */
-  img {
-    display: block;
-    /* width: 110%; */
-  }
+  width: 90px;
+  object-fit: contain;
+  /* padding: 4px; */
+  margin-bottom: 10px;
 `;
 const NavMenu = styled.div`
   align-items: center;
   display: flex;
   flex-flow: row nowrap;
   height: 100%;
-  justify-content: flex-end;
-  margin: 0px;
-  padding: 0px;
+
   position: relative;
   margin-right: auto;
   margin-left: 25px;
@@ -154,7 +149,10 @@ const NavMenu = styled.div`
     display: flex;
     padding: 12px;
     align-items: center;
-
+    img {
+      width: 22px;
+      margin-bottom: 4px;
+    }
     span {
       font-size: 13px;
       letter-spacing: 1.42px;
@@ -163,30 +161,28 @@ const NavMenu = styled.div`
       white-space: nowrap;
       position: relative;
 
-      &:before {
-        background-color: rgb(249, 249, 249);
+      &:after {
         border-radius: 0px 0px 4px 4px;
-        bottom: -6px;
-
+        top: 20px;
+        background-color: rgb(0, 249, 249);
         content: "";
-        display: block;
-        opacity: 0;
+
         height: 2px;
         left: 0px;
-        position: absolute;
+
         right: 0px;
+        position: absolute;
+
         transform-origin: left center;
         transform: scaleX(0);
-        transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
-        visibility: hidden;
+        transition: all 1250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+
         width: auto;
       }
     }
     &:hover {
-      span:before {
+      span:after {
         transform: scaleX(1);
-        opacity: 1 !important;
-        visibility: visible;
       }
     }
   }
@@ -209,6 +205,7 @@ const Login = styled.a`
     border-color: transparent;
   }
 `;
+
 const UserImg = styled.img`
   width: 100%;
   border-radius: 50%;
@@ -217,7 +214,9 @@ const UserImg = styled.img`
 const DropDown = styled.div`
   position: absolute;
   top: 48px;
+
   right: 0;
+
   background-color: rgb(19, 19, 19);
   border: 1px solid rgb(151, 151, 151, 0.34);
   border-radius: 4px;
@@ -232,9 +231,7 @@ const SignOut = styled.div`
   position: relative;
   width: 48px;
   height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
   cursor: pointer;
   &:hover {
     ${DropDown} {

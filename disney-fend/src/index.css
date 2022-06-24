@@ -1,44 +1,40 @@
-html{
+html {
   scroll-behavior: smooth;
-
 }
 
-*{
+* {
   box-sizing: border-box;
-
 }
 
-body{
+body {
   background-color: #040714;
   color: #f9f9f9;
   font-family: Avenir-Ronam, sans-serif;
   margin: 0;
   padding: 0;
-
+  /* font-size: 40px; */
 }
 
-a{
+a {
   /* Do not use empty rulesets */
-   color: white;
-   text-decoration: none;
+  color: white;
+  font-weight: 900;
 
+  text-decoration: none;
 }
-
 
 @media only screen and(min-width : 768px) {
-  body{
+  body {
     font-size: 16px;
-
   }
 }
-@media only screen and(min-width : 780px) and (max-width:768) {
-
-  body{
+@media only screen and(min-width : 780px) and (max-width: 768) {
+  body {
     font-size: 15px;
   }
 }
 @media only screen and(min-width : 479px) {
-  body{
+  body {
     font-size: 14px;
   }
 }

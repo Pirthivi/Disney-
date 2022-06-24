@@ -40,56 +40,64 @@ const ImgSlider = (props) => {
   );
 };
 
-const Container = styled.div``;
+const Container = styled.div`
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+`;
 const Carousel = styled(Slider)`
-  /* margin-top: 20px; */
+  /* display: flex; */
+  /* align-items: center; */
+  margin-top: 20px;
+  width: 100%;
 
   & > button {
-    /* opacity: 0;
+    opacity: 0;
     height: 100%;
     width: 5vw;
     z-index: 1;
-    transition: opacity 0.2s ease 0s; */
+    transition: opacity 0.2s ease 0s;
 
     &:hover {
-      /* opacity: 1; */
+      opacity: 1;
     }
   }
   ul li button {
     &::before {
-      /* font-size: 10px;
-      color: rgb(150, 158, 171); */
+      font-size: 10px;
+      color: rgb(150, 158, 171);
     }
   }
 
   li.slick-active button:before {
-    /* color: white; */
+    color: white;
   }
 
   .slick-list {
-    /* overflow: initial; */
+    overflow: initial;
   }
   .slick-prev {
-    /* left: -90px; */
+    left: -90px;
   }
   .slick-next {
-    /* right: -90px; */
+    right: -90px;
   }
 `;
 const Wrap = styled.div`
-  /* border-radius: 4px;
+  border-radius: 4px;
   cursor: pointer;
-  position: relative; */
+  position: relative;
+  /* display: block; */
 
   a {
-    /* border-radius: 4px;
+    border-radius: 4px;
     box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,
       rgb(0 0 0 / 73%) 0px 16px 10px -10px;
     cursor: pointer;
     display: block;
     position: relative;
     padding: 4px;
-    z-index: -1; */
+    z-index: -1;
   }
   img {
     width: 100%;

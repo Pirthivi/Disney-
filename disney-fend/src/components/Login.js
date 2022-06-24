@@ -3,8 +3,8 @@ import styled from "styled-components";
 const Login = (props) => {
   return (
     <Container>
+      <BgImage />
       <Content>
-        <BgImage />
         <CTA>
           <CtaLogoOne src="/images/cta-logo-one.svg" alt="" />
           <Signup>GET ALL THERE</Signup>
@@ -26,10 +26,10 @@ const Container = styled.section`
   height: 100vh;
 `;
 const Content = styled.div`
-  margin-bottom: 20vw;
+  margin-bottom: 0vw;
   width: 100%;
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -42,15 +42,15 @@ const BgImage = styled.div`
   background-image: url("/images/login-background.jpg");
   z-index: -1;
   position: absolute;
-  height: 100%;
+
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
-  top: 0;
-  right: 0;
-  left: 0;
+  top: 70px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
 `;
-
 const CTA = styled.div`
   max-width: 650px;
   width: 100%;
@@ -87,11 +87,6 @@ const Description = styled.p`
   letter-spacing: 1.5px;
 `;
 
-const CtaLogoTwo = styled.img`
-  cursor: pointer;
-  &:hover {
-    transition: all 200ms;
-  }
-`;
+const CtaLogoTwo = styled.img``;
 
 export default Login;
